@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-import { X, ShieldAlert, Send, Lock, ArrowRight, CheckCircle2, User, KeyRound } from 'lucide-react';
-import { ThemeMode } from '../types';
+import { X, Lock, ArrowRight, CheckCircle2, User, Phone, GraduationCap } from 'lucide-react';
+import { ThemeMode, Language } from '../types';
+import { TRANSLATIONS } from '../i18n/translations';
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenRegister: () => void;
   theme: ThemeMode;
+  lang: Language;
 }
 
-export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, theme }) => {
+export const LoginModal: React.FC<LoginModalProps> = ({ 
+  isOpen, 
+  onClose, 
+  onOpenRegister, 
+  theme, 
+  lang 
+}) => {
   const isDark = theme === 'dark';
+  const t = TRANSLATIONS[lang].auth;
 
-  const [role, setRole] = useState<'teacher' | 'student' | 'admin'>('teacher');
+  const [role, setRole] = useState<'teacher' | 'student'>('teacher');
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
-  const [otpCode, setOtpCode] = useState('');
-  const [awaitingOtp, setAwaitingOtp] = useState(false);
   const [forgotPasswordMode, setForgotPasswordMode] = useState(false);
   const [forgotStatus, setForgotStatus] = useState<'idle' | 'sent'>('idle');
 
@@ -23,19 +31,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, theme }
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (role === 'admin' && !awaitingOtp) {
-      // Step 1 for admin: Send OTP to Telegram
-      setAwaitingOtp(true);
-      return;
-    }
-    // Success simulation
-    alert(`Muvaffaqiyatli kirildi: ${role.toUpperCase()} akkaunti.`);
+    alert(`Muvaffaqiyatli kirildi: ${role === 'teacher' ? t.roleTeacher : t.roleStudent} kabineti.`);
     onClose();
   };
 
   const handleForgotPassword = (e: React.FormEvent) => {
     e.preventDefault();
-    // User enumeration protection (docs/03 rule 6.5)
     setForgotStatus('sent');
   };
 
@@ -44,252 +45,210 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, theme }
       <div 
         className="w-full max-w-md rounded-3xl border shadow-2xl overflow-hidden relative"
         style={{
-          backgroundColor: isDark ? '#12121A' : '#EDE7DA',
-          borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
-          color: isDark ? '#F6F2EA' : '#1F1A12',
+          backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+          borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+          color: isDark ? '#F5F4F0' : '#141413',
         }}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full opacity-70 hover:opacity-100 transition-opacity cursor-pointer z-10"
-          style={{ backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' }}
+          className="absolute top-5 right-5 p-2 rounded-full opacity-60 hover:opacity-100 transition-opacity cursor-pointer z-10"
+          style={{ backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(20, 20, 19, 0.05)' }}
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Modal Header */}
         <div className="p-6 sm:p-8 border-b text-center"
-          style={{ borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.1)' }}
+          style={{ borderColor: isDark ? '#2C2B28' : '#E5DFD3' }}
         >
           <h2 className="font-display font-bold text-2xl mb-1">
-            {forgotPasswordMode ? 'Parolni Tiklash' : 'Tizimga Kirish'}
+            {forgotPasswordMode ? t.forgotPasswordTitle : t.loginTitle}
           </h2>
           <p className="text-xs opacity-70">
             {forgotPasswordMode 
-              ? 'Telegram yoki Email orqali xavfsiz tiklash' 
-              : 'O\'z kabinetingizga xavfsiz kirish'}
+              ? "Telefon raqamingizni kiriting va biz SMS orqali tiklash kodini yuboramiz"
+              : t.loginSubtitle}
           </p>
 
-          {/* Role selector tabs */}
           {!forgotPasswordMode && (
-            <div className="flex rounded-xl p-1 mt-5 border"
+            <div className="mt-6 p-1.5 rounded-2xl border flex items-center gap-1"
               style={{
-                backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.1)',
+                backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                borderColor: isDark ? '#2C2B28' : '#E5DFD3',
               }}
             >
               <button
                 type="button"
-                onClick={() => { setRole('teacher'); setAwaitingOtp(false); }}
-                className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                  role === 'teacher' ? 'shadow-sm text-white' : 'opacity-70'
+                onClick={() => setRole('teacher')}
+                className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  role === 'teacher' ? 'shadow-sm text-white' : 'opacity-70 hover:opacity-100'
                 }`}
                 style={{
-                  backgroundColor: role === 'teacher' ? (isDark ? '#6C63FF' : '#B5551F') : 'transparent',
+                  backgroundColor: role === 'teacher' ? (isDark ? '#E28766' : '#CC5A33') : 'transparent',
                 }}
               >
-                O'qituvchi
+                <GraduationCap className="w-3.5 h-3.5" />
+                <span>{t.roleTeacher}</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => { setRole('student'); setAwaitingOtp(false); }}
-                className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                  role === 'student' ? 'shadow-sm text-white' : 'opacity-70'
+                onClick={() => setRole('student')}
+                className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  role === 'student' ? 'shadow-sm text-white' : 'opacity-70 hover:opacity-100'
                 }`}
                 style={{
-                  backgroundColor: role === 'student' ? (isDark ? '#6C63FF' : '#B5551F') : 'transparent',
+                  backgroundColor: role === 'student' ? (isDark ? '#E28766' : '#CC5A33') : 'transparent',
                 }}
               >
-                Talaba
-              </button>
-
-              <button
-                type="button"
-                onClick={() => { setRole('admin'); setAwaitingOtp(false); }}
-                className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                  role === 'admin' ? 'shadow-sm text-white' : 'opacity-70'
-                }`}
-                style={{
-                  backgroundColor: role === 'admin' ? (isDark ? '#6C63FF' : '#B5551F') : 'transparent',
-                }}
-              >
-                Admin (2FA)
+                <User className="w-3.5 h-3.5" />
+                <span>{t.roleStudent}</span>
               </button>
             </div>
           )}
         </div>
 
-        {/* Forgot password mode */}
+        {/* Form area */}
         {forgotPasswordMode ? (
-          <div className="p-6 sm:p-8 space-y-4">
+          <form onSubmit={handleForgotPassword} className="p-6 sm:p-8 space-y-4">
             {forgotStatus === 'sent' ? (
-              <div className="text-center space-y-4 py-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-500 mx-auto flex items-center justify-center">
-                  <CheckCircle2 className="w-7 h-7" />
+              <div className="text-center py-4 space-y-3">
+                <div className="w-12 h-12 rounded-full mx-auto flex items-center justify-center bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h3 className="font-display font-bold text-lg">So'rov qabul qilindi</h3>
-                <p className="text-xs opacity-75 max-w-xs mx-auto leading-relaxed">
-                  Agar ko'rsatilgan hisob mavjud bo'lsa, bir martalik kod Telegram botingizga yoki xavfsiz havola emailingizga yuborildi.
+                <h4 className="font-bold text-base">SMS yuborildi!</h4>
+                <p className="text-xs opacity-75">
+                  Agar ushbu raqam tizimda mavjud bo'lsa, tiklash kodi yuborildi.
                 </p>
                 <button
+                  type="button"
                   onClick={() => { setForgotPasswordMode(false); setForgotStatus('idle'); }}
-                  className="px-6 py-2 rounded-xl text-xs font-bold border cursor-pointer"
+                  className="px-6 py-2.5 rounded-xl font-bold text-xs text-white cursor-pointer mt-2"
+                  style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
                 >
                   Kirishga qaytish
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleForgotPassword} className="space-y-4">
+              <>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                    Email yoki Telefon raqamingiz
+                  <label className="text-xs font-bold uppercase tracking-wider opacity-80 block mb-1.5">
+                    {t.phone}
                   </label>
-                  <input
-                    type="text"
-                    required
-                    value={identifier}
-                    onChange={(e) => setIdentifier(e.target.value)}
-                    placeholder="email@misol.uz yoki +998 90..."
-                    className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none"
-                    style={{
-                      backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                      borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
-                    }}
-                  />
-                </div>
-
-                <div className="p-3 rounded-xl bg-amber-500/10 text-amber-700 dark:text-amber-400 text-xs">
-                  Telegram ulangan bo'lsa, kod Telegram botingizga boradi. Aks holda emailga 15 daqiqalik havola jo'natiladi.
+                  <div className="relative">
+                    <Phone className="w-4 h-4 absolute left-3.5 top-3.5 opacity-40" />
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+998 90 123 45 67"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border text-sm outline-none"
+                      style={{
+                        backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                        borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                      }}
+                    />
+                  </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl font-bold text-sm text-white shadow-md cursor-pointer"
-                  style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+                  className="w-full py-3.5 rounded-xl font-bold text-sm text-white shadow-md cursor-pointer"
+                  style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
                 >
-                  Tiklash Kodini Yuborish
+                  Tiklash kodini olish
                 </button>
 
-                <button
-                  type="button"
-                  onClick={() => setForgotPasswordMode(false)}
-                  className="w-full text-center text-xs opacity-60 hover:opacity-100 cursor-pointer pt-1"
-                >
-                  Bekor qilish
-                </button>
-              </form>
-            )}
-          </div>
-        ) : (
-          /* Normal Login Form */
-          <form onSubmit={handleLoginSubmit} className="p-6 sm:p-8 space-y-4">
-            
-            {role === 'admin' && (
-              <div className="p-3 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs flex items-start gap-2">
-                <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
-                <span>
-                  <strong>Admin 2FA Himoyasi:</strong> Kirish uchun majburiy Telegram-OTP va Geo-cheklov o'rnatilgan.
-                </span>
-              </div>
-            )}
-
-            {!awaitingOtp ? (
-              <>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                    Username yoki Email
-                  </label>
-                  <div className="relative">
-                    <User className="w-4 h-4 absolute left-3.5 top-3 opacity-40" />
-                    <input
-                      type="text"
-                      required
-                      value={identifier}
-                      onChange={(e) => setIdentifier(e.target.value)}
-                      placeholder="Username yoki email"
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border text-sm outline-none"
-                      style={{
-                        backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                        borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between items-center mb-1.5">
-                    <label className="text-xs font-bold uppercase tracking-wider opacity-80">
-                      Parol
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => setForgotPasswordMode(true)}
-                      className="text-xs font-medium opacity-60 hover:opacity-100 underline cursor-pointer"
-                    >
-                      Unutdingizmi?
-                    </button>
-                  </div>
-                  <div className="relative">
-                    <Lock className="w-4 h-4 absolute left-3.5 top-3 opacity-40" />
-                    <input
-                      type="password"
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border text-sm outline-none"
-                      style={{
-                        backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                        borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
-                      }}
-                    />
-                  </div>
+                <div className="text-center">
+                  <button
+                    type="button"
+                    onClick={() => setForgotPasswordMode(false)}
+                    className="text-xs opacity-70 hover:opacity-100 underline cursor-pointer"
+                  >
+                    Orqaga qaytish
+                  </button>
                 </div>
               </>
-            ) : (
-              /* Awaiting Telegram OTP (for Admin or 2FA) */
-              <div className="space-y-4">
-                <div className="p-3 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs flex items-start gap-2">
-                  <Send className="w-4 h-4 shrink-0 mt-0.5" />
-                  <span>
-                    Telegram botingizga 6 xonali bir martalik tasdiqlash kodi yuborildi.
-                  </span>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                    Bir martalik Telegram OTP kodi
-                  </label>
-                  <div className="relative">
-                    <KeyRound className="w-4 h-4 absolute left-3.5 top-3 opacity-40" />
-                    <input
-                      type="text"
-                      required
-                      maxLength={6}
-                      value={otpCode}
-                      onChange={(e) => setOtpCode(e.target.value)}
-                      placeholder="123456"
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border text-base font-mono tracking-widest outline-none"
-                      style={{
-                        backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                        borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
             )}
+          </form>
+        ) : (
+          <form onSubmit={handleLoginSubmit} className="p-6 sm:p-8 space-y-4">
+            <div>
+              <label className="text-xs font-bold uppercase tracking-wider opacity-80 block mb-1.5">
+                {t.phoneOrEmail}
+              </label>
+              <div className="relative">
+                <User className="w-4 h-4 absolute left-3.5 top-3.5 opacity-40" />
+                <input
+                  type="text"
+                  required
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                  placeholder="+998 90 123 45 67"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border text-sm outline-none"
+                  style={{
+                    backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-1.5">
+                <label className="text-xs font-bold uppercase tracking-wider opacity-80">
+                  {t.password}
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setForgotPasswordMode(true)}
+                  className="text-xs font-medium opacity-60 hover:opacity-100 underline cursor-pointer"
+                >
+                  {t.forgotPassword}
+                </button>
+              </div>
+              <div className="relative">
+                <Lock className="w-4 h-4 absolute left-3.5 top-3.5 opacity-40" />
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border text-sm outline-none"
+                  style={{
+                    backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                  }}
+                />
+              </div>
+            </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 mt-2 rounded-xl font-bold text-sm text-white shadow-md flex items-center justify-center gap-2 cursor-pointer"
-              style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+              className="w-full py-3.5 mt-2 rounded-xl font-bold text-sm text-white shadow-md flex items-center justify-center gap-2 cursor-pointer transition-transform hover:scale-[1.01] active:scale-[0.99]"
+              style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
             >
-              <span>{role === 'admin' && !awaitingOtp ? 'Telegram Kodini Olish' : 'Kabinetga Kirish'}</span>
+              <span>{role === 'teacher' ? `${t.loginBtn} (${t.roleTeacher})` : `${t.loginBtn} (${t.roleStudent})`}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
+
+            {/* Switch to Register */}
+            <div className="text-center pt-2 text-xs opacity-80">
+              <span>{t.noAccount} </span>
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onOpenRegister();
+                }}
+                className="font-bold underline cursor-pointer hover:opacity-100"
+                style={{ color: isDark ? '#E28766' : '#CC5A33' }}
+              >
+                {t.signUpNow}
+              </button>
+            </div>
 
           </form>
         )}

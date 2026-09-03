@@ -1,36 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: 'Fraunces', Georgia, serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Newsreader', 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   
-  --color-canvas-light: #F6F2EA;
-  --color-elevated-light: #EDE7DA;
-  --color-text-light: #1F1A12;
-  --color-accent-light: #B5551F;
+  --color-canvas-light: #FAF9F5;
+  --color-elevated-light: #FFFFFF;
+  --color-text-light: #141413;
+  --color-accent-light: #CC5A33;
 
-  --color-canvas-dark: #0A0A0F;
-  --color-elevated-dark: #12121A;
-  --color-border-dark: #232332;
-  --color-accent-dark: #6C63FF;
+  --color-canvas-dark: #141413;
+  --color-elevated-dark: #1F1E1C;
+  --color-border-dark: #2C2B28;
+  --color-accent-dark: #E28766;
 }
 
 :root {
-  --canvas: #F6F2EA;
-  --elevated: #EDE7DA;
-  --text-main: #1F1A12;
-  --accent: #B5551F;
-  --border-subtle: rgba(31, 26, 18, 0.12);
-  --card-shadow: 0 10px 30px -10px rgba(31, 26, 18, 0.08);
+  --canvas: #FAF9F5;
+  --elevated: #FFFFFF;
+  --text-main: #141413;
+  --text-muted: #66635B;
+  --accent: #CC5A33;
+  --accent-hover: #B84E29;
+  --border-subtle: #E5DFD3;
+  --card-shadow: 0 4px 24px -2px rgba(20, 20, 19, 0.06);
 }
 
 .dark {
-  --canvas: #0A0A0F;
-  --elevated: #12121A;
-  --text-main: #F6F2EA;
-  --accent: #6C63FF;
-  --border-subtle: #232332;
-  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --canvas: #141413;
+  --elevated: #1F1E1C;
+  --text-main: #F5F4F0;
+  --text-muted: #9E9B91;
+  --accent: #E28766;
+  --accent-hover: #EE9878;
+  --border-subtle: #2C2B28;
+  --card-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -39,22 +43,23 @@ body {
   color: var(--text-main);
   transition: background-color 0.25s ease, color 0.25s ease;
   overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
 
 .font-display {
   font-family: var(--font-serif);
 }
 
-/* Pinterest Reference 2 Grid pattern */
+/* Subtle editorial paper grid pattern */
 .bg-grid-pattern {
-  background-size: 32px 32px;
+  background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(31, 26, 18, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(31, 26, 18, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(20, 20, 19, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 20, 19, 0.035) 1px, transparent 1px);
 }
 
 .dark .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(245, 244, 240, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 244, 240, 0.03) 1px, transparent 1px);
 }

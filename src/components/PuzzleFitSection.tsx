@@ -1,123 +1,172 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Send, Check, Sparkles } from 'lucide-react';
-import { ThemeMode } from '../types';
+import { ThemeMode, Language } from '../types';
+import { TRANSLATIONS } from '../i18n/translations';
 
 interface PuzzleFitProps {
   theme: ThemeMode;
+  lang: Language;
   onOpenCreateSchool: () => void;
 }
 
-export const PuzzleFitSection: React.FC<PuzzleFitProps> = ({ theme, onOpenCreateSchool }) => {
+export const PuzzleFitSection: React.FC<PuzzleFitProps> = ({ theme, lang, onOpenCreateSchool }) => {
   const isDark = theme === 'dark';
+  const t = TRANSLATIONS[lang].puzzle;
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-4xl mx-auto text-center">
         
         {/* Eyebrow */}
-        <p className="text-xs uppercase tracking-widest font-bold mb-3 opacity-70"
-          style={{ color: isDark ? '#6C63FF' : '#B5551F' }}
+        <motion.p 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-xs uppercase tracking-widest font-bold mb-3 opacity-80"
+          style={{ color: isDark ? '#E28766' : '#CC5A33' }}
         >
-          Mukammal Hamkorlik
-        </p>
+          {t.eyebrow}
+        </motion.p>
 
         {/* Heading in Fraunces serif */}
-        <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight mb-4"
-          style={{ color: isDark ? '#F6F2EA' : '#1F1A12' }}
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="font-display font-bold text-3xl sm:text-5xl tracking-tight mb-4"
+          style={{ color: isDark ? '#F5F4F0' : '#141413' }}
         >
-          Sizning Bilimingiz + Bizning Tizim ={' '}
-          <span className="italic font-normal" style={{ color: isDark ? '#6C63FF' : '#B5551F' }}>
-            Muvaffaqiyatli Maktab
+          {t.title}{' '}
+          <span className="italic font-normal" style={{ color: isDark ? '#E28766' : '#CC5A33' }}>
+            {t.titleAccent}
           </span>
-        </h2>
+        </motion.h2>
 
-        <p className="max-w-xl mx-auto text-sm sm:text-base opacity-75 mb-12">
-          Siz o'z sohangizning eng zo'r mutaxassisisiz. Biz esa texnik qiyinchiliklar, 
-          serverlar, xavfsizlik va to'lovlarni o'z zimmamizga olamiz.
-        </p>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="max-w-xl mx-auto text-sm sm:text-base opacity-75 mb-12"
+          style={{ color: isDark ? '#F5F4F0' : '#141413' }}
+        >
+          {t.description}
+        </motion.p>
 
-        {/* Puzzle Graphic Simulation (Pinterest Reference 5 concept) */}
-        <div className="relative max-w-2xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-2 mb-12">
-          
-          {/* Left Piece: Teacher's Expertise */}
+        {/* Puzzle Graphic Simulation */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 relative"
+        >
+          {/* Left Piece: Teacher */}
           <div 
-            className="w-full md:w-1/2 p-8 rounded-3xl border text-left relative shadow-lg transform md:-rotate-1 transition-transform hover:rotate-0"
+            className="p-8 rounded-3xl border text-left flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-1"
             style={{
-              backgroundColor: isDark ? '#12121A' : '#EDE7DA',
-              borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.12)',
+              backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+              borderColor: isDark ? '#2C2B28' : '#E5DFD3',
             }}
           >
-            {/* Top right interlocking bump badge */}
-            <div className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full items-center justify-center font-bold text-xs text-white z-20 shadow-md"
-              style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
-            >
-              +
+            <div>
+              <span className="text-xs font-mono font-semibold uppercase tracking-wider block mb-2 opacity-60">
+                {t.leftTitle}
+              </span>
+              <h3 className="font-display font-bold text-2xl mb-4"
+                style={{ color: isDark ? '#E28766' : '#CC5A33' }}
+              >
+                {t.leftSubtitle}
+              </h3>
+              <ul className="space-y-3 text-sm opacity-80">
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>{t.leftItem1}</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>{t.leftItem2}</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>{t.leftItem3}</span>
+                </li>
+              </ul>
             </div>
-
-            <span className="text-xs uppercase font-bold tracking-wider opacity-60">Siz tomondan</span>
-            <h3 className="font-display font-bold text-2xl mt-1 mb-4"
-              style={{ color: isDark ? '#F6F2EA' : '#1F1A12' }}
+            <div className="mt-8 pt-4 border-t text-xs opacity-50 font-mono"
+              style={{ borderColor: isDark ? '#2C2B28' : '#E5DFD3' }}
             >
-              Sizning Bilimingiz
-            </h3>
-            <ul className="space-y-2 text-sm opacity-85">
-              <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>O'z sohangizdagi ekspertiza</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Mualliflik darslari va tajriba</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>O'quvchilar bilan muloqot</span>
-              </li>
-            </ul>
+              100% sizning muallifligingiz
+            </div>
           </div>
 
-          {/* Right Piece: Bilgim Edu Platform (Accent color) */}
+          {/* Right Piece: Bilgim Platform */}
           <div 
-            className="w-full md:w-1/2 p-8 rounded-3xl text-left text-white relative shadow-xl transform md:rotate-1 transition-transform hover:rotate-0"
+            className="p-8 rounded-3xl border text-left flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-1"
             style={{
-              backgroundColor: isDark ? '#6C63FF' : '#B5551F',
+              backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+              borderColor: isDark ? '#2C2B28' : '#E5DFD3',
             }}
           >
-            <span className="text-xs uppercase font-bold tracking-wider text-white/80">Bilgim Edu tomonidan</span>
-            <h3 className="font-display font-bold text-2xl mt-1 mb-4 text-white">
-              Bizning Infratuzilma
-            </h3>
-            <ul className="space-y-2 text-sm text-white/90">
-              <li className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
-                <span>Netflix darajasidagi video himoyasi</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
-                <span>Avtomatik Payme / Click hisob-kitob</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
-                <span>Jonli darslar, uy ishi va gamifikatsiya</span>
-              </li>
-            </ul>
+            <div>
+              <span className="text-xs font-mono font-semibold uppercase tracking-wider block mb-2 opacity-60">
+                {t.rightTitle}
+              </span>
+              <h3 className="font-display font-bold text-2xl mb-4"
+                style={{ color: isDark ? '#E28766' : '#CC5A33' }}
+              >
+                {t.rightSubtitle}
+              </h3>
+              <ul className="space-y-3 text-sm opacity-80">
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>{t.rightItem1}</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>{t.rightItem2}</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>{t.rightItem3}</span>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 pt-4 border-t text-xs opacity-50 font-mono"
+              style={{ borderColor: isDark ? '#2C2B28' : '#E5DFD3' }}
+            >
+              0% komissiya • 99.9% uptime
+            </div>
           </div>
 
-        </div>
+          {/* Center Plus Connector */}
+          <div 
+            className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full border items-center justify-center font-bold text-lg shadow-md z-10"
+            style={{
+              backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+              borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+              color: isDark ? '#E28766' : '#CC5A33',
+            }}
+          >
+            +
+          </div>
+        </motion.div>
 
-        {/* Telegram/Direct CTA from Ref 5 */}
-        <div className="inline-flex flex-col sm:flex-row items-center gap-3">
+        {/* Action Button */}
+        <div className="mt-12">
           <button
             onClick={onOpenCreateSchool}
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full font-bold text-sm text-white shadow-md transition-transform hover:scale-105 active:scale-95 cursor-pointer"
-            style={{
-              backgroundColor: isDark ? '#6C63FF' : '#B5551F',
-            }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm text-white shadow-md transition-transform hover:scale-105 cursor-pointer"
+            style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
           >
-            <span>Hoziroq O'z Maktabingizni Yarating</span>
-            <Send className="w-4 h-4" />
+            <Sparkles className="w-4 h-4" />
+            <span>{t.cta}</span>
           </button>
-          <span className="text-xs opacity-60">14 kun bepul • Sinab ko'rish hech qanday majburiyat yuklamaydi</span>
+          <p className="text-xs opacity-60 mt-3">
+            {t.ctaSub}
+          </p>
         </div>
 
       </div>

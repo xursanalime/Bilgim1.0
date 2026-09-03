@@ -1,26 +1,28 @@
 import React from 'react';
-import { WHY_US_NODES } from '../data/landingData';
-import { ThemeMode } from '../types';
+import { ThemeMode, Language } from '../types';
+import { TRANSLATIONS } from '../i18n/translations';
 
 interface VerticalBeadChainProps {
   theme: ThemeMode;
+  lang: Language;
 }
 
-export const VerticalBeadChain: React.FC<VerticalBeadChainProps> = ({ theme }) => {
+export const VerticalBeadChain: React.FC<VerticalBeadChainProps> = ({ theme, lang }) => {
   const isDark = theme === 'dark';
+  const t = TRANSLATIONS[lang].reasons;
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 border-t relative overflow-hidden"
-      style={{ borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.08)' }}
+      style={{ borderColor: isDark ? '#2C2B28' : '#E5DFD3' }}
     >
-      {/* Decorative Sparkles from Pinterest Reference 6 */}
-      <div className="absolute top-12 left-10 text-2xl opacity-40 animate-pulse pointer-events-none"
-        style={{ color: isDark ? '#6C63FF' : '#B5551F' }}
+      {/* Decorative Sparkles */}
+      <div className="absolute top-12 left-10 text-2xl opacity-20 pointer-events-none"
+        style={{ color: isDark ? '#E28766' : '#CC5A33' }}
       >
         ✦
       </div>
-      <div className="absolute bottom-16 right-16 text-xl opacity-40 animate-pulse delay-700 pointer-events-none"
-        style={{ color: isDark ? '#6C63FF' : '#B5551F' }}
+      <div className="absolute bottom-16 right-16 text-xl opacity-20 pointer-events-none"
+        style={{ color: isDark ? '#E28766' : '#CC5A33' }}
       >
         ✦
       </div>
@@ -29,63 +31,75 @@ export const VerticalBeadChain: React.FC<VerticalBeadChainProps> = ({ theme }) =
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <span className="text-xs uppercase tracking-widest font-bold opacity-60">
-            Asosiy Afzalliklar
-          </span>
-          <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight mt-1 mb-3"
-            style={{ color: isDark ? '#F6F2EA' : '#1F1A12' }}
+          <span className="text-xs uppercase tracking-widest font-bold opacity-80 block mb-2"
+            style={{ color: isDark ? '#E28766' : '#CC5A33' }}
           >
-            Nega aynan{' '}
-            <span className="italic font-normal" style={{ color: isDark ? '#6C63FF' : '#B5551F' }}>
-              Bilgim Edu?
-            </span>
+            {t.badge}
+          </span>
+          <h2 className="font-display font-bold text-3xl sm:text-5xl tracking-tight mb-3"
+            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
+          >
+            {t.title}
           </h2>
-          <p className="text-sm sm:text-base opacity-75">
-            O'qituvchilar erkinligi va barqaror daromadi uchun yaratilgan 4 ta asosiy ustun
+          <p className="text-sm sm:text-base opacity-75 max-w-lg mx-auto">
+            {t.subtitle}
           </p>
         </div>
 
-        {/* Vertical Connected Bead Chain (Pinterest Reference 6) */}
+        {/* Vertical Connected Bead Chain */}
         <div className="relative pl-6 sm:pl-10 space-y-10 sm:space-y-12">
           
           {/* Continuous vertical connecting line */}
           <div 
-            className="absolute left-12 sm:left-16 top-6 bottom-6 w-1 rounded-full -translate-x-1/2"
+            className="absolute left-12 sm:left-16 top-6 bottom-6 w-0.5 -translate-x-1/2"
             style={{
-              backgroundColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+              backgroundColor: isDark ? '#2C2B28' : '#E5DFD3',
             }}
           />
 
-          {WHY_US_NODES.map((node) => (
-            <div key={node.num} className="relative flex items-start gap-6 sm:gap-8 group">
+          {t.items.map((node) => (
+            <div key={node.number} className="relative flex items-start gap-6 sm:gap-8 group">
               
-              {/* Connected Bead / Circle (from Reference 6) */}
+              {/* The Bead / Node Circle */}
               <div 
-                className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-full border-4 flex items-center justify-center font-display font-bold text-base sm:text-lg shrink-0 shadow-md transition-transform group-hover:scale-110"
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border flex items-center justify-center font-display font-bold text-base sm:text-lg shrink-0 z-10 transition-transform group-hover:scale-110 shadow-sm"
                 style={{
-                  backgroundColor: isDark ? '#12121A' : '#EDE7DA',
-                  borderColor: isDark ? '#6C63FF' : '#B5551F',
-                  color: isDark ? '#6C63FF' : '#B5551F',
+                  backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                  color: isDark ? '#E28766' : '#CC5A33',
                 }}
               >
-                {node.num}
+                {node.number}
               </div>
 
-              {/* Text content card */}
+              {/* Node Card */}
               <div 
-                className="flex-1 p-5 sm:p-6 rounded-2xl border transition-all duration-300 group-hover:shadow-md"
+                className="flex-1 p-6 sm:p-8 rounded-3xl border shadow-sm transition-all group-hover:shadow-md"
                 style={{
-                  backgroundColor: isDark ? '#12121A' : '#EDE7DA',
-                  borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.12)',
+                  backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                 }}
               >
-                <h3 className="font-display font-bold text-lg sm:text-xl mb-1.5"
-                  style={{ color: isDark ? '#F6F2EA' : '#1F1A12' }}
-                >
-                  {node.title}
-                </h3>
-                <p className="text-sm opacity-80 leading-relaxed">
-                  {node.desc}
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h3 className="font-display font-bold text-lg sm:text-xl"
+                    style={{ color: isDark ? '#F5F4F0' : '#141413' }}
+                  >
+                    {node.title}
+                  </h3>
+                  <span 
+                    className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full border font-mono"
+                    style={{
+                      borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                      backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                      color: isDark ? '#E28766' : '#CC5A33',
+                    }}
+                  >
+                    {node.highlight}
+                  </span>
+                </div>
+
+                <p className="text-sm opacity-75 leading-relaxed">
+                  {node.description}
                 </p>
               </div>
 

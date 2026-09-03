@@ -89,9 +89,9 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
       <div 
         className="w-full max-w-lg rounded-3xl border shadow-2xl overflow-hidden relative"
         style={{
-          backgroundColor: isDark ? '#12121A' : '#EDE7DA',
-          borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
-          color: isDark ? '#F6F2EA' : '#1F1A12',
+          backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+          borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+          color: isDark ? '#F5F4F0' : '#141413',
         }}
       >
         {/* Close button */}
@@ -105,10 +105,10 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
 
         {/* Modal Header */}
         <div className="p-6 sm:p-8 border-b"
-          style={{ borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.1)' }}
+          style={{ borderColor: isDark ? '#2C2B28' : '#E5DFD3' }}
         >
           <div className="flex items-center gap-2 mb-1.5 text-xs font-bold uppercase tracking-wider"
-            style={{ color: isDark ? '#6C63FF' : '#B5551F' }}
+            style={{ color: isDark ? '#E28766' : '#CC5A33' }}
           >
             <Sparkles className="w-4 h-4" />
             <span>14 Kunlik Bepul Sinov</span>
@@ -148,8 +148,8 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                 placeholder="Masalan: Sardor Rahimov"
                 className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2"
                 style={{
-                  backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                  borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                  backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                 }}
               />
             </div>
@@ -167,8 +167,8 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                   placeholder="siz@misol.uz"
                   className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2"
                   style={{
-                    backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                    borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                    backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                   }}
                 />
               </div>
@@ -184,8 +184,8 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2"
                   style={{
-                    backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                    borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                    backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                   }}
                 />
               </div>
@@ -202,11 +202,11 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ''))}
-                  placeholder="sardor_ielts"
-                  className="w-full pl-8 pr-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2"
+                  placeholder="ustoz_ali"
+                  className="w-full pl-8 pr-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2 font-mono"
                   style={{
-                    backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                    borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                    backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                   }}
                 />
               </div>
@@ -215,72 +215,78 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                  Parol *
+                  Parol (kamida 8 belgi) *
                 </label>
                 <input
                   type="password"
                   required
+                  minLength={8}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2"
                   style={{
-                    backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                    borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                    backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                   }}
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                  Parolni qayta kiritish *
+                  Parolni tasdiqlang *
                 </label>
                 <input
                   type="password"
                   required
+                  minLength={8}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
                   className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2"
                   style={{
-                    backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                    borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                    backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                   }}
                 />
               </div>
             </div>
 
             {/* Terms checkbox */}
-            <div className="flex items-start gap-2.5 pt-1">
+            <div className="flex items-start gap-2 pt-2">
               <input
                 type="checkbox"
                 id="terms"
                 checked={termsAgreed}
                 onChange={(e) => setTermsAgreed(e.target.checked)}
-                className="mt-1 rounded cursor-pointer"
+                className="mt-1 accent-amber-600 rounded cursor-pointer"
               />
-              <label htmlFor="terms" className="text-xs opacity-70 cursor-pointer">
-                Bilgim Edu foydalanish qoidalari va maxfiylik siyosatiga roziman.
+              <label htmlFor="terms" className="text-xs opacity-75 cursor-pointer leading-relaxed">
+                Men Bilgim Edu{' '}
+                <span className="underline" style={{ color: isDark ? '#E28766' : '#CC5A33' }}>
+                  Foydalanish qoidalari
+                </span>{' '}
+                va xavfsizlik nizomiga roziman.
               </label>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 mt-4 rounded-xl font-bold text-sm text-white shadow-md flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
-              style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+              className="w-full py-3.5 rounded-xl font-bold text-sm text-white shadow-md flex items-center justify-center gap-2 cursor-pointer transition-transform hover:scale-[1.01] mt-4"
+              style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
             >
-              <span>Keyingi qadam: Maktabni sozlash</span>
+              <span>Keyingi Qadam: Maktabni Sozlash</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
         )}
 
-        {/* Step 2: School creation wizard */}
+        {/* Step 2: School creation form */}
         {step === 2 && (
           <form onSubmit={handleFinishStep2} className="p-6 sm:p-8 space-y-4">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                Maktabingiz / Loyihangiz nomi *
+                Maktab Nomi *
               </label>
               <input
                 type="text"
@@ -289,27 +295,31 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                 onChange={(e) => {
                   setSchoolName(e.target.value);
                   if (!slug) {
-                    handleSlugChange(e.target.value.toLowerCase().replace(/[^a-z0-9]/g, ''));
+                    handleSlugChange(e.target.value.toLowerCase().replace(/\s+/g, '-'));
                   }
                 }}
-                placeholder="Masalan: Oxford Academy yoki Dizayn Maktabi"
+                placeholder="Masalan: Apex Academy"
                 className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2"
                 style={{
-                  backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                  borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                  backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                 }}
               />
             </div>
 
-            {/* Subdomain (slug) */}
+            {/* Subdomain Input */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                Shaxsiy Subdomen ({'{slug}'}.bilgimedu.uz) *
-              </label>
-              <div className="flex items-center rounded-xl border overflow-hidden"
+              <div className="flex justify-between items-center mb-1.5">
+                <label className="text-xs font-bold uppercase tracking-wider opacity-80">
+                  Subdomen Tanlang *
+                </label>
+                <span className="text-[11px] opacity-60">Faqat lotin harflari va sonlar</span>
+              </div>
+              
+              <div className="flex items-center rounded-xl border overflow-hidden focus-within:ring-2"
                 style={{
-                  backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                  borderColor: isSlugTaken ? '#EF4444' : (isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)'),
+                  backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                  borderColor: isSlugTaken ? '#EF4444' : (isDark ? '#2C2B28' : '#E5DFD3'),
                 }}
               >
                 <input
@@ -317,36 +327,47 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                   required
                   value={slug}
                   onChange={(e) => handleSlugChange(e.target.value)}
-                  placeholder="maktabim"
-                  className="w-full px-4 py-2.5 text-sm bg-transparent outline-none font-mono"
+                  placeholder="apex"
+                  className="flex-1 px-4 py-2.5 text-sm bg-transparent outline-none font-mono text-right sm:text-left"
                 />
-                <span className="px-3 py-2.5 text-xs opacity-60 font-mono border-l"
-                  style={{ borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)' }}
+                <span 
+                  className="px-3 py-2.5 text-xs font-mono font-semibold border-l select-none opacity-80"
+                  style={{
+                    backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+                    borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                    color: isDark ? '#E28766' : '#CC5A33',
+                  }}
                 >
                   .bilgimedu.uz
                 </span>
               </div>
-              <p className="text-[11px] opacity-60 mt-1">
-                Sizning maktabingiz shu havola orqali ochiladi. Keyinchalik o'zgartirish ham mumkin.
-              </p>
+
+              {slug && !isSlugTaken && (
+                <p className="text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 font-mono flex items-center gap-1">
+                  <Check className="w-3.5 h-3.5" />
+                  https://{slug}.bilgimedu.uz bo'sh va tayyor!
+                </p>
+              )}
             </div>
 
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 opacity-80">
-                Yo'nalish / Soha
+                Asosiy Yo'nalish
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none cursor-pointer"
+                className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all cursor-pointer"
                 style={{
-                  backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                  borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                  backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                 }}
               >
                 <option value="Ingliz tili & Til ta'limi">Ingliz tili & Til ta'limi</option>
-                <option value="IT, Dasturlash & Texnologiya">IT, Dasturlash & Texnologiya</option>
-                <option value="Grafik Dizayn & UI/UX">Grafik Dizayn & UI/UX</option>
+                <option value="IELTS & Sertifikatlar">IELTS & Sertifikatlar</option>
+                <option value="Matematika & Aniq fanlar">Matematika & Aniq fanlar</option>
+                <option value="Dasturlash & IT">Dasturlash & IT</option>
+                <option value="Dizayn & San'at">Dizayn & San'at</option>
                 <option value="Marketing & SMM">Marketing & SMM</option>
                 <option value="Buxgalteriya & Moliya">Buxgalteriya & Moliya</option>
                 <option value="Boshqa soha">Boshqa soha</option>
@@ -363,8 +384,8 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                 value={timezone}
                 className="w-full px-4 py-2.5 rounded-xl border text-sm opacity-60 cursor-not-allowed"
                 style={{
-                  backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                  borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                  backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
                 }}
               />
             </div>
@@ -374,7 +395,7 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                 type="button"
                 onClick={() => setStep(1)}
                 className="w-1/3 py-3 rounded-xl border font-semibold text-xs opacity-75 hover:opacity-100 cursor-pointer"
-                style={{ borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.2)' }}
+                style={{ borderColor: isDark ? '#2C2B28' : '#E5DFD3' }}
               >
                 Ortga
               </button>
@@ -382,7 +403,7 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
               <button
                 type="submit"
                 className="w-2/3 py-3 rounded-xl font-bold text-sm text-white shadow-md flex items-center justify-center gap-2 cursor-pointer"
-                style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+                style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
               >
                 <span>Maktabni Ishga Tushirish</span>
                 <Check className="w-4 h-4" />
@@ -396,7 +417,7 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
           <div className="p-8 text-center space-y-6">
             <div 
               className="w-16 h-16 rounded-full mx-auto flex items-center justify-center text-white shadow-lg animate-bounce"
-              style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+              style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
             >
               <Check className="w-8 h-8" />
             </div>
@@ -412,8 +433,8 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
 
             <div className="p-4 rounded-2xl border text-left space-y-2 text-xs font-mono"
               style={{
-                backgroundColor: isDark ? '#0A0A0F' : '#F6F2EA',
-                borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.15)',
+                backgroundColor: isDark ? '#141413' : '#FAF9F5',
+                borderColor: isDark ? '#2C2B28' : '#E5DFD3',
               }}
             >
               <div className="flex justify-between">
@@ -426,12 +447,12 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
               </div>
               <div className="flex justify-between">
                 <span className="opacity-60">Tarif holati:</span>
-                <span className="text-blue-500 font-bold">Go Rejasi (14 kun bepul)</span>
+                <span className="text-amber-500 font-bold">Go Rejasi (14 kun bepul)</span>
               </div>
             </div>
 
-            {/* Telegram 2FA connect prompt (from docs/03) */}
-            <div className="p-4 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs text-left flex items-start gap-3">
+            {/* Telegram 2FA connect prompt */}
+            <div className="p-4 rounded-2xl bg-amber-500/10 text-amber-700 dark:text-amber-300 text-xs text-left flex items-start gap-3 border border-amber-500/20">
               <Send className="w-5 h-5 shrink-0 mt-0.5" />
               <div>
                 <strong className="block font-semibold mb-0.5">Telegram Botni Bog'lang (Majburiy)</strong>
@@ -447,7 +468,7 @@ export const CreateSchoolModal: React.FC<CreateSchoolModalProps> = ({ isOpen, on
                 setStep(1);
               }}
               className="w-full py-3.5 rounded-xl font-bold text-sm text-white shadow-md cursor-pointer"
-              style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+              style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
             >
               Boshqaruv Paneliga O'tish
             </button>
