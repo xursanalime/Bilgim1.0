@@ -13,19 +13,30 @@ import { TestimonialsFloating } from './components/TestimonialsFloating';
 import { FaqSection } from './components/FaqSection';
 import { StickyCta } from './components/StickyCta';
 import { Footer } from './components/Footer';
-import { CreateSchoolModal } from './components/CreateSchoolModal';
 import { LoginModal } from './components/LoginModal';
 import { RegisterModal } from './components/RegisterModal';
-import { ThemeMode, Language } from './types';
+import { TeacherSchoolSetupModal } from './components/TeacherSchoolSetupModal';
+import { ThemeMode, Language, UserSession, SchoolWizardData } from './types';
 
 export default function App() {
   const [theme, setTheme] = useState<ThemeMode>('light');
   const [lang, setLang] = useState<Language>('uz');
-  const [createSchoolOpen, setCreateSchoolOpen] = useState(false);
+  
+  // Auth state with local persistence
+  const [user, setUser] = useState<UserSession | null>(() => {
+    try {
+      const saved = localStorage.getItem('bilgim_user_session');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
   const [loginOpen, setLoginOpen] = useState(false);
   const [registerOpen, setRegisterOpen] = useState(false);
+  const [schoolSetupOpen, setSchoolSetupOpen] = useState(false);
 
-  // Sync theme with HTML class
+  // Sync theme with HTML root class
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'dark') {
@@ -39,6 +50,58 @@ export default function App() {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
+  const handleLoginSuccess = (loggedInUser: UserSession) => {
+    setUser(loggedInUser);
+    try {
+      localStorage.setItem('bilgim_user_session', JSON.stringify(loggedInUser));
+    } catch {}
+
+    // If teacher hasn't configured a school yet, prompt setup
+    if (loggedInUser.role === 'teacher' && !loggedInUser.hasSetupSchool) {
+      setTimeout(() => {
+        setSchoolSetupOpen(true);
+      }, 300);
+    }
+  };
+
+  const handleRegisterSuccess = (newUser: UserSession) => {
+    setUser(newUser);
+    try {
+      localStorage.setItem('bilgim_user_session', JSON.stringify(newUser));
+    } catch {}
+
+    // Requirement: "teacher register qilib kirgandan keyin maktab ochish sozlamalari chiqishi kerak"
+    if (newUser.role === 'teacher') {
+      setTimeout(() => {
+        setSchoolSetupOpen(true);
+      }, 300);
+    }
+  };
+
+  const handleSaveSchool = (data: SchoolWizardData) => {
+    if (!user) return;
+    const updatedUser: UserSession = {
+      ...user,
+      school: data,
+      hasSetupSchool: true,
+    };
+    setUser(updatedUser);
+    try {
+      localStorage.setItem('bilgim_user_session', JSON.stringify(updatedUser));
+    } catch {}
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    try {
+      localStorage.removeItem('bilgim_user_session');
+    } catch {}
+  };
+
+  const handleOpenRegister = () => {
+    setRegisterOpen(true);
+  };
+
   return (
     <div className={`min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'dark' : ''}`}>
       {/* 1. Header Navigation */}
@@ -47,9 +110,11 @@ export default function App() {
         toggleTheme={toggleTheme}
         lang={lang}
         setLang={setLang}
-        onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+        user={user}
         onOpenLogin={() => setLoginOpen(true)}
-        onOpenRegister={() => setRegisterOpen(true)}
+        onOpenRegister={handleOpenRegister}
+        onOpenSchoolSetup={() => setSchoolSetupOpen(true)}
+        onLogout={handleLogout}
       />
 
       {/* Main Content Sections */}
@@ -58,21 +123,21 @@ export default function App() {
         <Hero
           theme={theme}
           lang={lang}
-          onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+          onOpenRegister={handleOpenRegister}
         />
 
         {/* 3. Interactive Live Platform Simulator */}
         <PlatformShowcase
           theme={theme}
           lang={lang}
-          onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+          onOpenRegister={handleOpenRegister}
         />
 
         {/* 4. Fit Section */}
         <PuzzleFitSection
           theme={theme}
           lang={lang}
-          onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+          onOpenRegister={handleOpenRegister}
         />
 
         {/* 5. Toolkit Grid */}
@@ -85,21 +150,21 @@ export default function App() {
         <StepsRoadmap
           theme={theme}
           lang={lang}
-          onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+          onOpenRegister={handleOpenRegister}
         />
 
         {/* 7. Interactive 0% Commission Income Calculator */}
         <IncomeCalculator
           theme={theme}
           lang={lang}
-          onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+          onOpenRegister={handleOpenRegister}
         />
 
         {/* 8. Pricing Section */}
         <PricingSection
           theme={theme}
           lang={lang}
-          onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+          onOpenRegister={handleOpenRegister}
         />
 
         {/* 9. Target Audience Filter */}
@@ -131,45 +196,49 @@ export default function App() {
       <Footer
         theme={theme}
         lang={lang}
-        onOpenCreateSchool={() => setCreateSchoolOpen(true)}
         onOpenLogin={() => setLoginOpen(true)}
-        onOpenRegister={() => setRegisterOpen(true)}
+        onOpenRegister={handleOpenRegister}
       />
 
       {/* 14. Floating Sticky CTA on scroll */}
       <StickyCta
         theme={theme}
         lang={lang}
-        onOpenCreateSchool={() => setCreateSchoolOpen(true)}
+        onOpenRegister={handleOpenRegister}
       />
 
       {/* Interactive Modals */}
-      <CreateSchoolModal
-        isOpen={createSchoolOpen}
-        onClose={() => setCreateSchoolOpen(false)}
-        theme={theme}
-      />
-
       <LoginModal
         isOpen={loginOpen}
         onClose={() => setLoginOpen(false)}
-        theme={theme}
-        lang={lang}
-        onSwitchToRegister={() => {
+        onOpenRegister={() => {
           setLoginOpen(false);
           setRegisterOpen(true);
         }}
+        onLoginSuccess={handleLoginSuccess}
+        theme={theme}
+        lang={lang}
       />
 
       <RegisterModal
         isOpen={registerOpen}
         onClose={() => setRegisterOpen(false)}
-        theme={theme}
-        lang={lang}
-        onSwitchToLogin={() => {
+        onOpenLogin={() => {
           setRegisterOpen(false);
           setLoginOpen(true);
         }}
+        onRegisterSuccess={handleRegisterSuccess}
+        theme={theme}
+        lang={lang}
+      />
+
+      <TeacherSchoolSetupModal
+        isOpen={schoolSetupOpen}
+        onClose={() => setSchoolSetupOpen(false)}
+        user={user}
+        onSaveSchool={handleSaveSchool}
+        theme={theme}
+        lang={lang}
       />
     </div>
   );

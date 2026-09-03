@@ -226,22 +226,22 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       stat1Sub: "To'liq funksional sinov",
       stat2Label: "0% Komissiya",
       stat2Sub: "Barcha daromad o'zingizga",
-      stat3Label: "HLS + DRM",
-      stat3Sub: "Video himoyasi va suv belgisi",
+      stat3Label: "100% Xavfsiz",
+      stat3Sub: "Maxsus video himoyasi va suv belgisi",
     },
     showcase: {
       badge: "Jonli Interfeys Simulyatori",
       title: "Bilgim Edu Ichidan Qanday Ko'rinadi?",
       subtitle: "O'qituvchi va o'quvchi kabinetlari qulay, zamonaviy va xavfsiz.",
       tabDashboard: "O'qituvchi Paneli",
-      tabDrm: "Video Himoyasi (DRM)",
+      tabDrm: "Himoyalangan Darsxona",
       tabStreak: "O'quvchi Gamifikatsiyasi",
       dashboardMonthlyRevenue: "Oylik tushum",
       dashboardActiveStudents: "Faol talabalar",
       dashboardCompletionRate: "Darslarni tugatish",
-      drmTitle: "Dinamik Suv Belgisi (Watermark)",
+      drmTitle: "Dinamik Suv Belgisi",
       drmSub: "Talaba ismi, telefon raqami va IP ekranda harakatlanadi. Skrinshot va videoga yozishning oldi olinadi.",
-      drmNotice: "Video yuklab olinmaydigan HLS shifrlash orqali uzatiladi",
+      drmNotice: "Video darslar yuklab olish va nusxalashdan to'liq himoyalangan",
       streakDays: "Kunlik Zanjir (Streak)",
       streakSub: "Talabalar har kuni dars o'qib, XP va nishonlar yig'ishadi.",
       streakLeaderboard: "Maktab peshqadamlar jadvali",
@@ -259,7 +259,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       leftItem3: "O'quvchilar bilan jonli muloqot",
       rightTitle: "Bilgim Edu Tizimi",
       rightSubtitle: "Infratuzilma va Xavfsizlik",
-      rightItem1: "Shifrlangan HLS video himoyasi & Suv belgisi",
+      rightItem1: "Maxsus shifrlangan video himoyasi & Suv belgisi",
       rightItem2: "Payme, Click, Uzcard va Humo to'lovlari",
       rightItem3: "Jonli darslar, uy ishi va gamifikatsiya",
       cta: "Hoziroq O'z Maktabingizni Yarating",
@@ -273,7 +273,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         {
           step: "01",
           title: "Video Himoyasi & Player",
-          description: "HLS shifrlash, yuklab olishdan himoya va talabaning ismi tushirilgan dinamik suv belgisi.",
+          description: "Maxsus shifrlash, yuklab olishdan himoya va talabaning ma'lumotlari tushirilgan dinamik suv belgisi.",
           badge: "Anti-Pirat",
         },
         {
@@ -422,7 +422,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "2 tagacha faol kurs",
           liveHours: "6 soat/oy (max 12 kishi/sessiya)",
           recordingInfo: "Faqat audio recording (3 soat/oy)",
-          storageInfo: "2 GB xavfsiz Cloudflare R2 saqlash",
+          storageInfo: "2 GB xavfsiz bulutli video xotira",
           features: [
             "Shaxsiy subdomen ({slug}.bilgimedu.uz)",
             "Payme, Click, Uzcard, Humo integratsiyasi",
@@ -440,7 +440,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "8 tagacha faol kurs",
           liveHours: "25 soat/oy (max 25 kishi/sessiya)",
           recordingInfo: "Audio recording (20 soat/oy)",
-          storageInfo: "20 GB xavfsiz Cloudflare R2 saqlash",
+          storageInfo: "20 GB xavfsiz bulutli video xotira",
           features: [
             "Barcha Go tarifi imkoniyatlari",
             "Ichki daromad va talabalar analitikasi",
@@ -457,7 +457,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "Cheksiz kurslar",
           liveHours: "50 soat/oy (max 40 kishi/sessiya)",
           recordingInfo: "To'liq HD Video recording (30 soat/oy)",
-          storageInfo: "60 GB xavfsiz Cloudflare R2 saqlash",
+          storageInfo: "60 GB xavfsiz bulutli video xotira",
           features: [
             "Barcha Pro tarifi imkoniyatlari",
             "HD Video dars yozib olish (Egress)",
@@ -484,7 +484,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         },
         {
           question: "Darslarim Telegram kanallarga tarqalib ketishidan qanday himoyalangan?",
-          answer: "Videolar HLS (HTTP Live Streaming) formatida shifrlanadi. Brauzerdan to'g'ridan-to'g'ri yuklab olib bo'lmaydi. Bundan tashqari, videoning ustida talabaning ismi, telefon raqami va IP manzili dinamik suv belgisi bo'lib aylanadi — ekranni yozib olganda kim tarqatgani bir zumda oshkor bo'ladi.",
+          answer: "Videolar maxsus formatda shifrlanadi va to'g'ridan-to'g'ri yuklab olib bo'lmaydi. Dars ko'rilayotganda ekranda talabaning ismi va telefon raqami dinamik suv belgisi bo'lib harakatlanadi, bu esa noqonuniy nusxalashning oldini oladi.",
         },
         {
           question: "To'lovlarni qanday qabul qilaman?",
@@ -562,7 +562,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       stat1Sub: "Полный доступ без ограничений",
       stat2Label: "0% Комиссии",
       stat2Sub: "100% выручки остаётся вам",
-      stat3Label: "HLS + DRM",
+      stat3Label: "100% Защита",
       stat3Sub: "Защита видео и водяной знак",
     },
     showcase: {
@@ -570,14 +570,14 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       title: "Как Устроена Платформа Bilgim Edu?",
       subtitle: "Удобные, современные и защищённые кабинеты для преподавателя и студента.",
       tabDashboard: "Кабинет Преподавателя",
-      tabDrm: "Защита Видео (DRM)",
+      tabDrm: "Защищённый Класс",
       tabStreak: "Геймификация Студентов",
       dashboardMonthlyRevenue: "Доход за месяц",
       dashboardActiveStudents: "Активные студенты",
       dashboardCompletionRate: "Проходимость уроков",
       drmTitle: "Динамический Водяной Знак",
       drmSub: "Имя, телефон и IP студента плавно перемещаются по видео. Защита от записи экрана и сливов.",
-      drmNotice: "Видео транслируется через защищённый HLS-поток",
+      drmNotice: "Видео защищено от прямого скачивания и копирования",
       streakDays: "Дней Непрерывного Обучения (Streak)",
       streakSub: "Студенты учатся каждый день, зарабатывают XP и соревнуются за лидерство.",
       streakLeaderboard: "Таблица лидеров школы",
@@ -595,7 +595,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       leftItem3: "Общение и менторство студентов",
       rightTitle: "Система Bilgim Edu",
       rightSubtitle: "Инфраструктура и Безопасность",
-      rightItem1: "Шифрование видео HLS и динамический водяной знак",
+      rightItem1: "Шифрование видео и динамический водяной знак",
       rightItem2: "Приём платежей Payme, Click, Uzcard и Humo",
       rightItem3: "Домашние задания, тесты и геймификация",
       cta: "Создать Свою Школу Прямо Сейчас",
@@ -609,7 +609,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         {
           step: "01",
           title: "Защищённый Видеоплеер",
-          description: "Шифрование HLS, запрет на скачивание и динамический водяной знак с данными зрителя.",
+          description: "Шифрование видео, запрет на скачивание и динамический водяной знак с данными зрителя.",
           badge: "Антипират",
         },
         {
@@ -719,7 +719,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         {
           number: "02",
           title: "Защита видео от скачивания и записи",
-          description: "Уроки защищены HLS-шифрованием, а динамический водяной знак защищает от сливов.",
+          description: "Уроки надёжно защищены шифрованием, а динамический водяной знак защищает от сливов.",
           highlight: "100% Защита",
         },
         {
@@ -758,7 +758,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "До 2 активных курсов",
           liveHours: "6 часов/мес (до 12 чел/сессия)",
           recordingInfo: "Только аудио-запись (3 часа/мес)",
-          storageInfo: "2 ГБ защищённого хранилища R2",
+          storageInfo: "2 ГБ защищённого видео-хранилища",
           features: [
             "Персональный субдомен ({slug}.bilgimedu.uz)",
             "Интеграция с Payme, Click, Uzcard, Humo",
@@ -776,7 +776,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "До 8 активных курсов",
           liveHours: "25 часов/мес (до 25 чел/сессия)",
           recordingInfo: "Аудио-запись (20 часов/мес)",
-          storageInfo: "20 ГБ защищённого хранилища R2",
+          storageInfo: "20 ГБ защищённого видео-хранилища",
           features: [
             "Все возможности тарифа Go",
             "Аналитика доходов и вовлечённости",
@@ -793,7 +793,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "Неограниченно курсов",
           liveHours: "50 часов/мес (до 40 чел/сессия)",
           recordingInfo: "Запись в Full HD видео (30 часов/мес)",
-          storageInfo: "60 ГБ защищённого хранилища R2",
+          storageInfo: "60 ГБ защищённого видео-хранилища",
           features: [
             "Все возможности тарифа Pro",
             "HD видеозапись уроков (Egress)",
@@ -820,7 +820,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         },
         {
           question: "Как видео защищено от сливов в Telegram?",
-          answer: "Видео транслируется с помощью защищённого протокола HLS без возможности прямого скачивания. Дополнительно поверх видео динамически накладывается водяной знак с именем, телефоном и IP студента.",
+          answer: "Видео транслируется в зашифрованном виде без возможности прямого скачивания. Дополнительно поверх видео динамически накладывается водяной знак с именем и телефоном студента, защищая от экранной записи.",
         },
         {
           question: "Как я буду получать деньги от студентов?",
@@ -898,22 +898,22 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       stat1Sub: "Full-feature unrestricted trial",
       stat2Label: "0% Commission",
       stat2Sub: "Keep 100% of your earnings",
-      stat3Label: "HLS + DRM",
-      stat3Sub: "Video DRM & Dynamic Watermark",
+      stat3Label: "100% Secure",
+      stat3Sub: "Video Protection & Dynamic Watermark",
     },
     showcase: {
       badge: "Live Interactive Simulator",
       title: "Experience Bilgim Edu From the Inside",
       subtitle: "Ergonomic, modern, and highly secure dashboards for both educators and students.",
       tabDashboard: "Teacher Dashboard",
-      tabDrm: "Video DRM Protection",
+      tabDrm: "Secure Classroom",
       tabStreak: "Student Gamification",
       dashboardMonthlyRevenue: "Monthly Revenue",
       dashboardActiveStudents: "Active Students",
       dashboardCompletionRate: "Course Completion",
       drmTitle: "Dynamic Watermark Protection",
       drmSub: "Student's name, phone, and IP bounce dynamically across the screen to deter screen recordings.",
-      drmNotice: "Streamed via encrypted HLS chunks — direct downloads impossible",
+      drmNotice: "Videos are encrypted — direct downloads and piracy prevented",
       streakDays: "Daily Study Streak",
       streakSub: "Students learn daily, earn XP, and climb the school leaderboard.",
       streakLeaderboard: "School Leaderboard",
@@ -931,7 +931,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       leftItem3: "Mentoring & engaging with your students",
       rightTitle: "Bilgim Edu System",
       rightSubtitle: "Infrastructure & Security",
-      rightItem1: "Encrypted HLS video DRM & dynamic watermarks",
+      rightItem1: "Encrypted video protection & dynamic watermarks",
       rightItem2: "Instant Payme, Click, Uzcard & Humo checkouts",
       rightItem3: "Interactive homework, quizzes & gamification",
       cta: "Launch Your School Today",
@@ -944,8 +944,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       items: [
         {
           step: "01",
-          title: "DRM-Protected Player",
-          description: "HLS encryption, download prevention, and dynamic watermark with viewer credentials.",
+          title: "Anti-Piracy Video Player",
+          description: "Encrypted video streaming, download prevention, and dynamic on-screen student watermarks.",
           badge: "Anti-Piracy",
         },
         {
@@ -1029,7 +1029,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       notFitSubtitle: "Bilgim Edu may not be appropriate if:",
       fitItems: [
         "Tutors struggling to manage courses and students across messy Telegram groups",
-        "Experts looking for rock-solid DRM protection against course leaks and piracy",
+        "Experts looking for rock-solid video protection against course leaks and piracy",
         "Educators who want structured homework checking and student progress tracking",
         "Creators unwilling to surrender 15-20% of their revenue to marketplace platforms",
         "Educators building a lasting personal brand under their own subdomain",
@@ -1054,8 +1054,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         },
         {
           number: "02",
-          title: "DRM video protection & anti-piracy",
-          description: "Encrypted HLS streaming plus dynamic on-screen watermarks with the student's credentials.",
+          title: "Video protection & anti-piracy",
+          description: "Encrypted video streaming plus dynamic on-screen watermarks with the student's credentials.",
           highlight: "100% Security",
         },
         {
@@ -1094,7 +1094,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "Up to 2 active courses",
           liveHours: "6 hrs/mo (up to 12 people/session)",
           recordingInfo: "Audio recording only (3 hrs/mo)",
-          storageInfo: "2 GB encrypted Cloudflare R2 storage",
+          storageInfo: "2 GB secure cloud video storage",
           features: [
             "Custom subdomain ({slug}.bilgimedu.uz)",
             "Payme, Click, Uzcard, Humo checkout",
@@ -1112,7 +1112,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "Up to 8 active courses",
           liveHours: "25 hrs/mo (up to 25 people/session)",
           recordingInfo: "Audio recording (20 hrs/mo)",
-          storageInfo: "20 GB encrypted Cloudflare R2 storage",
+          storageInfo: "20 GB secure cloud video storage",
           features: [
             "All Go plan features included",
             "Revenue & student engagement analytics",
@@ -1129,7 +1129,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           coursesLimit: "Unlimited courses",
           liveHours: "50 hrs/mo (up to 40 people/session)",
           recordingInfo: "Full HD Video recording (30 hrs/mo)",
-          storageInfo: "60 GB encrypted Cloudflare R2 storage",
+          storageInfo: "60 GB secure cloud video storage",
           features: [
             "All Pro plan features included",
             "HD Video recording (Egress)",
@@ -1156,7 +1156,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         },
         {
           question: "How are my videos protected from piracy and leaks?",
-          answer: "Videos are encrypted using HLS (HTTP Live Streaming) and cannot be downloaded directly. Moreover, a dynamic watermark with the student's name, phone, and IP address moves continuously across the screen.",
+          answer: "Videos are streamed in an encrypted format and cannot be downloaded directly. Furthermore, dynamic watermarks containing the viewer's identity deter unauthorized recording.",
         },
         {
           question: "How do I receive payments from students?",

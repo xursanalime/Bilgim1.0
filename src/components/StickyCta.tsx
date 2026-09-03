@@ -6,10 +6,10 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface StickyCtaProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
+  onOpenRegister: () => void;
 }
 
-export const StickyCta: React.FC<StickyCtaProps> = ({ theme, lang, onOpenCreateSchool }) => {
+export const StickyCta: React.FC<StickyCtaProps> = ({ theme, lang, onOpenRegister }) => {
   const isDark = theme === 'dark';
   const t = TRANSLATIONS[lang];
   const [visible, setVisible] = useState(false);
@@ -49,14 +49,14 @@ export const StickyCta: React.FC<StickyCtaProps> = ({ theme, lang, onOpenCreateS
             <h4 className="font-display font-bold text-sm leading-tight"
               style={{ color: isDark ? '#F5F4F0' : '#141413' }}
             >
-              {t.nav.createSchool}
+              {t.nav.register}
             </h4>
             <span className="text-xs opacity-70">{t.hero.trialBadge}</span>
           </div>
         </div>
 
         <button
-          onClick={onOpenCreateSchool}
+          onClick={onOpenRegister}
           className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-xs sm:text-sm text-white shadow-md flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 cursor-pointer ml-auto"
           style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
         >

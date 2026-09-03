@@ -48,3 +48,24 @@ export interface FaqItem {
   question: string;
   answer: string;
 }
+
+export interface UserSession {
+  id: string;
+  fullName: string;
+  username: string;
+  email?: string;
+  phone?: string;
+  role: 'teacher' | 'student';
+  telegramConnected?: boolean;
+  school?: SchoolWizardData;
+  hasSetupSchool?: boolean;
+  registeredAt?: string;
+}
+
+export interface SchoolWizardData {
+  name: string;
+  slug: string;
+  field: string;
+  timezone: string;
+}
+

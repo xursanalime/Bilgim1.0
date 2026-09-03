@@ -7,13 +7,13 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface IncomeCalculatorProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
+  onOpenRegister: () => void;
 }
 
 export const IncomeCalculator: React.FC<IncomeCalculatorProps> = ({ 
   theme, 
   lang, 
-  onOpenCreateSchool 
+  onOpenRegister 
 }) => {
   const isDark = theme === 'dark';
   const t = TRANSLATIONS[lang].calculator;
@@ -191,11 +191,11 @@ export const IncomeCalculator: React.FC<IncomeCalculatorProps> = ({
               </div>
 
               <button
-                onClick={onOpenCreateSchool}
+                onClick={onOpenRegister}
                 className="w-full py-4 rounded-xl font-bold text-sm text-white shadow-md flex items-center justify-center gap-2 cursor-pointer transition-transform hover:scale-[1.02]"
                 style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
               >
-                <span>{t.cta}</span>
+                <span>Ro'yxatdan O'tish & Boshlash</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

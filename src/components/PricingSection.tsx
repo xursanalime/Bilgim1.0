@@ -7,13 +7,13 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface PricingSectionProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
+  onOpenRegister: () => void;
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ 
   theme, 
   lang, 
-  onOpenCreateSchool 
+  onOpenRegister 
 }) => {
   const isDark = theme === 'dark';
   const t = TRANSLATIONS[lang].pricing;
@@ -213,7 +213,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
                 {/* Card Action Button */}
                 <div>
                   <button
-                    onClick={onOpenCreateSchool}
+                    onClick={onOpenRegister}
                     className={`w-full py-3.5 rounded-xl font-bold text-sm shadow-md transition-all cursor-pointer ${
                       plan.popular 
                         ? 'text-white' 

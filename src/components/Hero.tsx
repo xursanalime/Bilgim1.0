@@ -7,10 +7,10 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface HeroProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
+  onOpenRegister: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ theme, lang, onOpenCreateSchool }) => {
+export const Hero: React.FC<HeroProps> = ({ theme, lang, onOpenRegister }) => {
   const isDark = theme === 'dark';
   const t = TRANSLATIONS[lang].hero;
 
@@ -147,7 +147,7 @@ export const Hero: React.FC<HeroProps> = ({ theme, lang, onOpenCreateSchool }) =
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={onOpenCreateSchool}
+            onClick={onOpenRegister}
             className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base text-white shadow-md flex items-center justify-center gap-3 cursor-pointer transition-transform"
             style={{
               backgroundColor: isDark ? '#E28766' : '#CC5A33',

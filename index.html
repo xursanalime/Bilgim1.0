@@ -2,6 +2,23 @@
 <html lang="uz">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var _fetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function () {
+              return _fetch;
+            },
+            set: function (val) {
+              _fetch = val;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (e) {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bilgim Edu — Onlayn Ta'lim Platformasi</title>
     <meta name="description" content="Mustaqil o'qituvchi va mutaxassislar uchun onlayn maktab platformasi." />

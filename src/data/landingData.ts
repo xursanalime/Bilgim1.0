@@ -11,7 +11,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     coursesLimit: '2 tagacha faol kurs',
     liveHours: '6 soat/oy (max 12 kishi/sessiya)',
     recordingInfo: 'Faqat audio recording (3 soat/oy)',
-    storageInfo: '2 GB xavfsiz Cloudflare R2 saqlash',
+    storageInfo: '2 GB xavfsiz bulutli video xotira',
     features: [
       'Shaxsiy subdomen ({slug}.bilgimedu.uz)',
       'Payme, Click, Uzcard, Humo integratsiyasi',
@@ -32,7 +32,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     coursesLimit: '8 tagacha faol kurs',
     liveHours: '25 soat/oy (max 25 kishi/sessiya)',
     recordingInfo: 'Faqat audio recording (20 soat/oy)',
-    storageInfo: '20 GB xavfsiz Cloudflare R2 saqlash',
+    storageInfo: '20 GB xavfsiz bulutli video xotira',
     features: [
       'Barcha Go tarifi imkoniyatlari',
       'Ichki daromad va talabalar analitikasi',
@@ -52,7 +52,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     coursesLimit: 'Cheksiz kurslar',
     liveHours: '50 soat/oy (max 40 kishi/sessiya)',
     recordingInfo: 'To\'liq HD Video recording (30 soat/oy)',
-    storageInfo: '60 GB xavfsiz Cloudflare R2 saqlash',
+    storageInfo: '60 GB xavfsiz bulutli video xotira',
     features: [
       'Barcha Pro tarifi imkoniyatlari',
       'HD Video dars yozib olish (Egress)',
@@ -108,7 +108,7 @@ export const TOOLKIT_CARDS: ToolkitCard[] = [
     stepNum: '01',
     pinColor: '#B5551F',
     title: 'Interaktiv Jonli Darslar',
-    description: 'LiveKit infratuzilmasi orqali uzluksiz video konferensiya, dars davomiyligini avtomatik nazorat qilish va audio/video yozib olish.',
+    description: 'Yuqori sifatli uzluksiz video konferensiya, dars davomiyligini avtomatik nazorat qilish va audio/video yozib olish.',
     badge: 'Live Video',
     iconName: 'Video',
   },
@@ -117,8 +117,8 @@ export const TOOLKIT_CARDS: ToolkitCard[] = [
     stepNum: '02',
     pinColor: '#3B82F6',
     title: 'Himoyalangan Video LMS',
-    description: 'Netflix va Cloudflare darajasidagi signed URL va HLS oqimi. Video darslaringiz o\'g\'irlanishi va yuklab olinishidan to\'liq himoyalangan.',
-    badge: 'DRM Himoya',
+    description: 'Maxsus shifrlangan video oqimi va dinamik suv belgisi. Darslaringiz yuklab olinishi va ruxsatsiz tarqatilishidan to\'liq himoyalangan.',
+    badge: 'Kafolatlangan Himoya',
     iconName: 'ShieldCheck',
   },
   {
@@ -222,7 +222,7 @@ export const FAQS: FaqItem[] = [
   },
   {
     question: 'Videolarim o\'g\'irlanmasligi yoki boshqa joyga tarqalmasligi qanday kafolatlanadi?',
-    answer: 'Videolar maxsus shifrlangan HLS oqimi va muddati cheklangan signed URL orqali uzatiladi. Oddiy brauzer yoki yuklab oluvchi dasturlar videoni saqlab ololmaydi.',
+    answer: 'Videolar maxsus shifrlangan oqim orqali uzatiladi va to\'g\'ridan-to\'g\'ri yuklab olinmaydi. Har bir video ustida talabaning ismi va telefon raqami suv belgisi bo\'lib ko\'rinadi, bu esa noqonuniy tarqatishning oldini oladi.',
   },
   {
     question: '14 kunlik bepul sinovda qanday imkoniyatlar bor?',

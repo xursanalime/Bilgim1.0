@@ -7,12 +7,12 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface StepsRoadmapProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
+  onOpenRegister: () => void;
 }
 
 const stepIcons = [Sparkles, BookOpen, TrendingUp];
 
-export const StepsRoadmap: React.FC<StepsRoadmapProps> = ({ theme, lang, onOpenCreateSchool }) => {
+export const StepsRoadmap: React.FC<StepsRoadmapProps> = ({ theme, lang, onOpenRegister }) => {
   const isDark = theme === 'dark';
   const t = TRANSLATIONS[lang].roadmap;
 
@@ -122,11 +122,11 @@ export const StepsRoadmap: React.FC<StepsRoadmapProps> = ({ theme, lang, onOpenC
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <button
-            onClick={onOpenCreateSchool}
+            onClick={onOpenRegister}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm text-white shadow-md transition-transform hover:scale-105 cursor-pointer"
             style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
           >
-            <span>{t.cta}</span>
+            <span>Ro'yxatdan O'tish & Boshlash</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

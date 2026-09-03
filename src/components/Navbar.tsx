@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Moon, Sun, Globe, Sparkles, GraduationCap, ChevronDown, UserPlus, LogIn } from 'lucide-react';
-import { Language, ThemeMode } from '../types';
+import { Moon, Sun, Globe, GraduationCap, ChevronDown, UserPlus, LogIn, Settings, LogOut, User } from 'lucide-react';
+import { Language, ThemeMode, UserSession } from '../types';
 import { TRANSLATIONS } from '../i18n/translations';
 
 interface NavbarProps {
@@ -8,7 +8,9 @@ interface NavbarProps {
   toggleTheme: () => void;
   lang: Language;
   setLang: (l: Language) => void;
-  onOpenCreateSchool: () => void;
+  user: UserSession | null;
+  onOpenSchoolSetup: () => void;
+  onLogout: () => void;
   onOpenLogin: () => void;
   onOpenRegister: () => void;
 }
@@ -18,7 +20,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   toggleTheme,
   lang,
   setLang,
-  onOpenCreateSchool,
+  user,
+  onOpenSchoolSetup,
+  onLogout,
   onOpenLogin,
   onOpenRegister,
 }) => {
@@ -45,69 +49,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         <a href="#" className="flex items-center gap-3 group">
           <div 
             className="w-11 h-11 rounded-xl flex items-center justify-center font-bold text-white shadow-md transition-transform group-hover:scale-105"
-            style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
+            style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
           >
             <GraduationCap className="w-6 h-6" />
           </div>
-          <div className="flex flex-col">
-            <span className="font-display font-bold text-2xl tracking-tight leading-none"
-              style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-            >
-              Bilgim <span style={{ color: isDark ? '#E28766' : '#CC5A33' }}>Edu</span>
-            </span>
-            <span className="text-xs opacity-60 tracking-wider uppercase font-medium mt-1">
-              {t.tagline}
-            </span>
-          </div>
+          <span className="font-display font-bold text-2xl tracking-tight leading-none"
+            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
+          >
+            Bilgim <span style={{ color: isDark ? '#6C63FF' : '#B5551F' }}>Edu</span>
+          </span>
         </a>
 
-        {/* Center navigation links */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
-          <a 
-            href="#features" 
-            className="opacity-75 hover:opacity-100 transition-opacity"
-            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-          >
-            {t.features}
-          </a>
-          <a 
-            href="#how-it-works" 
-            className="opacity-75 hover:opacity-100 transition-opacity"
-            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-          >
-            {t.howItWorks}
-          </a>
-          <a 
-            href="#calculator" 
-            className="opacity-75 hover:opacity-100 transition-opacity"
-            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-          >
-            Kalkulyator
-          </a>
-          <a 
-            href="#pricing" 
-            className="opacity-75 hover:opacity-100 transition-opacity"
-            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-          >
-            {t.pricing}
-          </a>
-          <a 
-            href="#testimonials" 
-            className="opacity-75 hover:opacity-100 transition-opacity"
-            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-          >
-            {t.testimonials}
-          </a>
-          <a 
-            href="#faq" 
-            className="opacity-75 hover:opacity-100 transition-opacity"
-            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-          >
-            {t.faq}
-          </a>
-        </nav>
-
-        {/* Right side controls & CTA */}
+        {/* Right side controls & Auth actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           
           {/* Language Selector Dropdown */}
@@ -177,41 +130,81 @@ export const Navbar: React.FC<NavbarProps> = ({
             {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-stone-700" />}
           </button>
 
-          {/* Login Button */}
-          <button
-            onClick={onOpenLogin}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl transition-opacity hover:opacity-80 cursor-pointer"
-            style={{ color: isDark ? '#F5F4F0' : '#141413' }}
-          >
-            <LogIn className="w-3.5 h-3.5 opacity-60" />
-            <span>{t.login}</span>
-          </button>
+          {/* AUTHENTICATION STATE */}
+          {user ? (
+            /* Logged in state */
+            <div className="flex items-center gap-2">
+              {/* User badge */}
+              <div 
+                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs"
+                style={{
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                  backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+                }}
+              >
+                <div 
+                  className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white"
+                  style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
+                >
+                  {user.fullName ? user.fullName.charAt(0).toUpperCase() : 'U'}
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="font-bold truncate max-w-[120px]">{user.fullName}</span>
+                  <span className="text-[10px] opacity-60">
+                    {user.role === 'teacher' ? "Ustoz" : "Talaba"}
+                  </span>
+                </div>
+              </div>
 
-          {/* Register Button */}
-          <button
-            onClick={onOpenRegister}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer hover:border-amber-500"
-            style={{
-              borderColor: isDark ? '#2C2B28' : '#E5DFD3',
-              backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
-              color: isDark ? '#F5F4F0' : '#141413',
-            }}
-          >
-            <UserPlus className="w-3.5 h-3.5 opacity-60" />
-            <span>{t.register}</span>
-          </button>
+              {/* Teacher School Setup wizard button */}
+              {user.role === 'teacher' && (
+                <button
+                  onClick={onOpenSchoolSetup}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white shadow-sm transition-all hover:scale-[1.02] cursor-pointer"
+                  style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+                >
+                  <Settings className="w-3.5 h-3.5" />
+                  <span>{user.hasSetupSchool && user.school ? `${user.school.slug}.bilgimedu.uz` : "Maktab Ochish Wizardi"}</span>
+                </button>
+              )}
 
-          {/* Create School Button (Main CTA) */}
-          <button
-            onClick={onOpenCreateSchool}
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            style={{ 
-              backgroundColor: isDark ? '#E28766' : '#CC5A33',
-            }}
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.createSchool}</span>
-          </button>
+              {/* Logout button */}
+              <button
+                onClick={onLogout}
+                className="p-2 rounded-xl border opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                style={{
+                  borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                  backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+                }}
+                title="Tizimdan chiqish"
+              >
+                <LogOut className="w-3.5 h-3.5 text-rose-500" />
+              </button>
+            </div>
+          ) : (
+            /* Guest (Not logged in) state */
+            <div className="flex items-center gap-2">
+              {/* Login Button */}
+              <button
+                onClick={onOpenLogin}
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl transition-opacity hover:opacity-80 cursor-pointer"
+                style={{ color: isDark ? '#F5F4F0' : '#141413' }}
+              >
+                <LogIn className="w-3.5 h-3.5 opacity-60" />
+                <span>{t.login}</span>
+              </button>
+
+              {/* Register Button (Primary action) */}
+              <button
+                onClick={onOpenRegister}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl text-white shadow-sm transition-all hover:scale-[1.02] cursor-pointer"
+                style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+              >
+                <UserPlus className="w-3.5 h-3.5" />
+                <span>{t.register}</span>
+              </button>
+            </div>
+          )}
 
         </div>
 
@@ -219,3 +212,4 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+

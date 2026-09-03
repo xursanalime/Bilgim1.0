@@ -11,10 +11,10 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface PlatformShowcaseProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
+  onOpenRegister: () => void;
 }
 
-export const PlatformShowcase: React.FC<PlatformShowcaseProps> = ({ theme, lang, onOpenCreateSchool }) => {
+export const PlatformShowcase: React.FC<PlatformShowcaseProps> = ({ theme, lang, onOpenRegister }) => {
   const isDark = theme === 'dark';
   const t = TRANSLATIONS[lang].showcase;
   const [activeTab, setActiveTab] = useState<'teacher' | 'student' | 'streak'>('teacher');
@@ -242,7 +242,7 @@ export const PlatformShowcase: React.FC<PlatformShowcaseProps> = ({ theme, lang,
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="font-display font-bold text-base">Faol Kurslaringiz</h4>
                       <button 
-                        onClick={onOpenCreateSchool}
+                        onClick={onOpenRegister}
                         className="text-xs font-bold px-3 py-1.5 rounded-lg text-white cursor-pointer"
                         style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
                       >
@@ -341,7 +341,7 @@ export const PlatformShowcase: React.FC<PlatformShowcaseProps> = ({ theme, lang,
                             4-Dars: Argumentation Techniques
                           </div>
                           <div className="text-neutral-400 text-xs mt-1 font-mono">
-                            Shifrlangan HLS video oqimi (Cloudflare R2)
+                            Interaktiv Mualliflik Video Darsi
                           </div>
                         </div>
                       </div>
@@ -469,7 +469,7 @@ export const PlatformShowcase: React.FC<PlatformShowcaseProps> = ({ theme, lang,
                       style={{ borderColor: isDark ? '#232332' : 'rgba(31, 26, 18, 0.1)' }}
                     >
                       <button 
-                        onClick={onOpenCreateSchool}
+                        onClick={onOpenRegister}
                         className="w-full py-2.5 rounded-xl text-xs font-bold text-white cursor-pointer"
                         style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
                       >
@@ -593,11 +593,11 @@ export const PlatformShowcase: React.FC<PlatformShowcaseProps> = ({ theme, lang,
                     </p>
 
                     <button 
-                      onClick={onOpenCreateSchool}
+                      onClick={onOpenRegister}
                       className="w-full py-3 rounded-xl text-xs font-bold text-white shadow-sm cursor-pointer"
                       style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
                     >
-                      Gamifikatsiyani Ishga Tushirish
+                      Ro'yxatdan O'tish & Boshlash
                     </button>
                   </div>
 

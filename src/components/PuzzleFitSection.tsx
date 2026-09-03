@@ -7,10 +7,10 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface PuzzleFitProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
+  onOpenRegister: () => void;
 }
 
-export const PuzzleFitSection: React.FC<PuzzleFitProps> = ({ theme, lang, onOpenCreateSchool }) => {
+export const PuzzleFitSection: React.FC<PuzzleFitProps> = ({ theme, lang, onOpenRegister }) => {
   const isDark = theme === 'dark';
   const t = TRANSLATIONS[lang].puzzle;
 
@@ -157,12 +157,12 @@ export const PuzzleFitSection: React.FC<PuzzleFitProps> = ({ theme, lang, onOpen
         {/* Action Button */}
         <div className="mt-12">
           <button
-            onClick={onOpenCreateSchool}
+            onClick={onOpenRegister}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm text-white shadow-md transition-transform hover:scale-105 cursor-pointer"
             style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
           >
             <Sparkles className="w-4 h-4" />
-            <span>{t.cta}</span>
+            <span>Ro'yxatdan O'tish & Boshlash</span>
           </button>
           <p className="text-xs opacity-60 mt-3">
             {t.ctaSub}

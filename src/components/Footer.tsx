@@ -6,7 +6,6 @@ import { TRANSLATIONS } from '../i18n/translations';
 interface FooterProps {
   theme: ThemeMode;
   lang: Language;
-  onOpenCreateSchool: () => void;
   onOpenLogin: () => void;
   onOpenRegister: () => void;
 }
@@ -14,7 +13,6 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ 
   theme, 
   lang, 
-  onOpenCreateSchool, 
   onOpenLogin,
   onOpenRegister 
 }) => {
@@ -35,14 +33,14 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex items-center gap-3">
             <div 
               className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shadow-sm"
-              style={{ backgroundColor: isDark ? '#E28766' : '#CC5A33' }}
+              style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
             >
               <GraduationCap className="w-5 h-5" />
             </div>
             <span className="font-display font-bold text-2xl tracking-tight"
               style={{ color: isDark ? '#F5F4F0' : '#141413' }}
             >
-              Bilgim <span style={{ color: isDark ? '#E28766' : '#CC5A33' }}>Edu</span>
+              Bilgim <span style={{ color: isDark ? '#6C63FF' : '#B5551F' }}>Edu</span>
             </span>
           </div>
 
@@ -52,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex items-center gap-2 text-xs font-semibold opacity-70">
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
-            <span>HLS DRM Video • Payme & Click • Cloudflare R2</span>
+            <span>Xavfsiz Video • Payme & Click • Bulutli Xotira</span>
           </div>
         </div>
 
@@ -98,11 +96,11 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <button 
-                onClick={onOpenCreateSchool}
+                onClick={onOpenRegister}
                 className="hover:opacity-100 transition-opacity text-left font-bold cursor-pointer"
                 style={{ color: isDark ? '#E28766' : '#CC5A33' }}
               >
-                {t.nav.createSchool}
+                14 kun bepul sinov
               </button>
             </li>
           </ul>
