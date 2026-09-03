@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  --color-canvas-light: #F6F2EA;
+  --color-elevated-light: #EDE7DA;
+  --color-text-light: #1F1A12;
+  --color-accent-light: #B5551F;
+
+  --color-canvas-dark: #0A0A0F;
+  --color-elevated-dark: #12121A;
+  --color-border-dark: #232332;
+  --color-accent-dark: #6C63FF;
+}
+
+:root {
+  --canvas: #F6F2EA;
+  --elevated: #EDE7DA;
+  --text-main: #1F1A12;
+  --accent: #B5551F;
+  --border-subtle: rgba(31, 26, 18, 0.12);
+  --card-shadow: 0 10px 30px -10px rgba(31, 26, 18, 0.08);
+}
+
+.dark {
+  --canvas: #0A0A0F;
+  --elevated: #12121A;
+  --text-main: #F6F2EA;
+  --accent: #6C63FF;
+  --border-subtle: #232332;
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--canvas);
+  color: var(--text-main);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-serif);
+}
+
+/* Pinterest Reference 2 Grid pattern */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(31, 26, 18, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 26, 18, 0.04) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
