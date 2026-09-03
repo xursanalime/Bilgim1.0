@@ -19,6 +19,7 @@ interface TeacherSchoolSetupModalProps {
   onClose: () => void;
   user: UserSession | null;
   onSaveSchool: (data: SchoolWizardData) => void;
+  onOpenSchoolSubdomain?: (slug: string) => void;
   theme: ThemeMode;
   lang: Language;
 }
@@ -47,6 +48,7 @@ export const TeacherSchoolSetupModal: React.FC<TeacherSchoolSetupModalProps> = (
   onClose,
   user,
   onSaveSchool,
+  onOpenSchoolSubdomain,
   theme,
 }) => {
   const isDark = theme === 'dark';
@@ -187,16 +189,20 @@ export const TeacherSchoolSetupModal: React.FC<TeacherSchoolSetupModalProps> = (
               >
                 <div className="flex items-center justify-between">
                   <span className="opacity-60 font-sans">Shaxsiy maktab domeni:</span>
-                  <a 
-                    href={`https://${slug}.bilgimedu.uz`} 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="font-bold flex items-center gap-1 hover:underline"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (onOpenSchoolSubdomain) {
+                        onClose();
+                        onOpenSchoolSubdomain(slug);
+                      }
+                    }}
+                    className="font-bold flex items-center gap-1 hover:underline cursor-pointer"
                     style={{ color: isDark ? '#6C63FF' : '#B5551F' }}
                   >
                     <span>https://{slug}.bilgimedu.uz</span>
                     <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                  </button>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="opacity-60 font-sans">Ta'lim sohasi:</span>
@@ -220,11 +226,17 @@ export const TeacherSchoolSetupModal: React.FC<TeacherSchoolSetupModalProps> = (
 
                 <button
                   type="button"
-                  onClick={onClose}
-                  className="flex-1 py-3 rounded-xl font-bold text-xs text-white shadow-md cursor-pointer"
+                  onClick={() => {
+                    onClose();
+                    if (onOpenSchoolSubdomain) {
+                      onOpenSchoolSubdomain(slug);
+                    }
+                  }}
+                  className="flex-1 py-3 rounded-xl font-bold text-xs text-white shadow-md cursor-pointer flex items-center justify-center gap-1.5"
                   style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
                 >
-                  Tugatish & Kabinetga O'tish
+                  <span>Maktab Sahifasiga O'tish</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

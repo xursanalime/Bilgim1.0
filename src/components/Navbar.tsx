@@ -10,6 +10,7 @@ interface NavbarProps {
   setLang: (l: Language) => void;
   user: UserSession | null;
   onOpenSchoolSetup: () => void;
+  onOpenSchoolLanding?: (slug: string) => void;
   onLogout: () => void;
   onOpenLogin: () => void;
   onOpenRegister: () => void;
@@ -22,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   setLang,
   user,
   onOpenSchoolSetup,
+  onOpenSchoolLanding,
   onLogout,
   onOpenLogin,
   onOpenRegister,
@@ -156,16 +158,41 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               </div>
 
-              {/* Teacher School Setup wizard button */}
+              {/* Teacher School Setup wizard & School link buttons */}
               {user.role === 'teacher' && (
-                <button
-                  onClick={onOpenSchoolSetup}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white shadow-sm transition-all hover:scale-[1.02] cursor-pointer"
-                  style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
-                >
-                  <Settings className="w-3.5 h-3.5" />
-                  <span>{user.hasSetupSchool && user.school ? `${user.school.slug}.bilgimedu.uz` : "Maktab Ochish Wizardi"}</span>
-                </button>
+                user.hasSetupSchool && user.school ? (
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => onOpenSchoolLanding && onOpenSchoolLanding(user.school!.slug)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white shadow-sm transition-all hover:scale-[1.02] cursor-pointer"
+                      style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+                      title="Maktab landing sahifasini ochish"
+                    >
+                      <Globe className="w-3.5 h-3.5" />
+                      <span>{user.school.slug}.bilgimedu.uz</span>
+                    </button>
+                    <button
+                      onClick={onOpenSchoolSetup}
+                      className="p-2 rounded-xl border opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                      style={{
+                        borderColor: isDark ? '#2C2B28' : '#E5DFD3',
+                        backgroundColor: isDark ? '#1F1E1C' : '#FFFFFF',
+                      }}
+                      title="Maktab sozlamalari"
+                    >
+                      <Settings className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={onOpenSchoolSetup}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white shadow-sm transition-all hover:scale-[1.02] cursor-pointer"
+                    style={{ backgroundColor: isDark ? '#6C63FF' : '#B5551F' }}
+                  >
+                    <Settings className="w-3.5 h-3.5" />
+                    <span>Maktab Ochish Wizardi</span>
+                  </button>
+                )
               )}
 
               {/* Logout button */}

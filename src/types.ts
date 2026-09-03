@@ -69,3 +69,62 @@ export interface SchoolWizardData {
   timezone: string;
 }
 
+export interface SchoolCourse {
+  id: string;
+  title: string;
+  description: string;
+  priceMonth: string;
+  priceTotal: string;
+  duration: string;
+  format: string;
+  level: string;
+  badge?: string;
+  modulesCount: number;
+  lessonsCount: number;
+  curriculum: string[];
+}
+
+export interface SchoolTestimonial {
+  id: string;
+  studentName: string;
+  achievement: string;
+  comment: string;
+  avatar: string;
+  rating: number;
+  date: string;
+}
+
+export interface SchoolPricingPlan {
+  id: string;
+  title: string;
+  price: string;
+  period: string;
+  popular?: boolean;
+  description: string;
+  features: string[];
+}
+
+export interface SchoolLandingData {
+  slug: string;
+  name: string;
+  tagline: string;
+  field: string;
+  timezone: string;
+  teacherName: string;
+  teacherRole: string;
+  teacherBio: string;
+  teacherExperience: string;
+  teacherStudentsCount: string;
+  teacherRating: string;
+  heroPromise: string;
+  heroSubtext: string;
+  previewVideoTitle: string;
+  forWhom: string[];
+  notForWhom: string[];
+  courses: SchoolCourse[];
+  testimonials: SchoolTestimonial[];
+  pricingPlans: SchoolPricingPlan[];
+  faqs: FaqItem[];
+  telegramChannel?: string;
+}
+
